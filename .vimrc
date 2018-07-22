@@ -51,3 +51,7 @@ set showcmd                " Show already typed keys when more are expected.
 
 set ttyfast                " Faster redrawing.
 set lazyredraw             " Only redraw when necessary.
+
+" Maintain undo history between sessions
+set undofile
+set undodir=~/.vim/undodir
