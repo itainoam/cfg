@@ -23,6 +23,16 @@ nnoremap <leader>w :w<cr>
 nnoremap <leader><leader>w :wq<cr>
 nnoremap <leader>o :CtrlPMRU<cr>
 
+" Buffer management
+nnoremap <leader>[  :bprevious<CR>
+nnoremap <leader>] :bnext<CR>
+nnoremap <silent> [B :bfirst<CR>
+nnoremap <silent> ]B :blast<CR>
+
+" map ctrl+p to MRU
+let g:ctrlp_map='<c-p>'
+let g:ctrlp_cmd = 'CtrlPMRU'
+
 colorscheme seoul256
 let g:seoul256_background = 233
 syntax enable
