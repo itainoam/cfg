@@ -70,3 +70,6 @@ set undodir=~/.vim/undodir
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_SR = "\<Esc>]50;CursorShape=2\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+
+" Maintain undo history between sessions
+set clipboard=unnamed
