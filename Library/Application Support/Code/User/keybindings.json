@@ -1,4 +1,51 @@
 [{
+    "key": "cmd+enter",
+    "command": "renameFile",
+    "when": "explorerViewletVisible && filesExplorerFocus"
+  }, {
+    "key": "enter",
+    "command": "-renameFile",
+    "when": "explorerViewletVisible && filesExplorerFocus"
+  },
+  {
+    "key": "enter",
+    "command": "list.select",
+    "when": "explorerViewletVisible && filesExplorerFocus"
+  },
+  {
+    "key": "shift+cmd+x",
+    "command": "editor.action.deleteLines",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "alt+k",
+    "command": "expand_region",
+    "when": "editorTextFocus"
+  }, {
+    "key": "alt+j",
+    "command": "undo_expand_region",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "shift+alt+ctrl+'",
+    "command": "extension.selectEitherQuote"
+  }, {
+    "key": "shift+alt+ctrl+0",
+    "command": "extension.selectParenthesis"
+  }, {
+    "key": "shift+alt+ctrl+9",
+    "command": "extension.selectParenthesis"
+  }, {
+    "key": "shift+alt+ctrl+`",
+    "command": "extension.selectBackTick"
+  }, {
+    "key": "shift+alt+ctrl+[",
+    "command": "extension.selectCurlyBrackets"
+  }, {
+    "key": "shift+alt+ctrl+]",
+    "command": "extension.selectCurlyBrackets"
+  },
+  {
     "key": "cmd+o",
     "command": "workbench.action.quickOpen"
   },
@@ -127,30 +174,7 @@
     "command": "extension.node-debug.pickLoadedScript",
     "when": "debugType == 'node'"
   },
-  {
-    "key": "shift+alt+ctrl+'",
-    "command": "extension.selectEitherQuote"
-  },
-  {
-    "key": "shift+alt+ctrl+0",
-    "command": "extension.selectParenthesis"
-  },
-  {
-    "key": "shift+alt+ctrl+9",
-    "command": "extension.selectParenthesis"
-  },
-  {
-    "key": "shift+alt+ctrl+`",
-    "command": "extension.selectBackTick"
-  },
-  {
-    "key": "shift+alt+ctrl+[",
-    "command": "extension.selectCurlyBrackets"
-  },
-  {
-    "key": "shift+alt+ctrl+]",
-    "command": "extension.selectCurlyBrackets"
-  },
+
   {
     "key": "alt+shift+l",
     "command": "subwordNavigation.cursorSubwordRightSelect",
@@ -161,16 +185,7 @@
     "command": "subwordNavigation.cursorSubwordLeftSelect",
     "when": "editorTextFocus"
   },
-  {
-    "key": "alt+k",
-    "command": "expand_region",
-    "when": "editorTextFocus"
-  },
-  {
-    "key": "alt+j",
-    "command": "undo_expand_region",
-    "when": "editorTextFocus"
-  },
+
   // {
   //   "key": "ctrl+e",
   //   "command": "cursorEnd",
@@ -205,11 +220,6 @@
     "key": "cmd+shift+d",
     "command": "lafe.duplicateCode",
     "when": "editorFocus"
-  },
-  {
-    "key": "shift+cmd+x",
-    "command": "editor.action.deleteLines",
-    "when": "editorTextFocus && !editorReadonly"
   },
   {
     "key": "shift+cmd+r",
@@ -271,24 +281,12 @@
   },
   {
     "key": "cmd+b",
-    "command": "editor.action.goToImplementation",
-    "when": "editorHasImplementationProvider && editorTextFocus && !isInEmbeddedEditor"
+    "command": "editor.action.goToDeclaration",
+    "when": "editorHasImplementationProvidegoToDeclarationr && editorTextFocus && !isInEmbeddedEditor"
   },
   {
     "key": "ctrl+shift+g",
     "command": "workbench.view.scm"
-  } {
-    "key": "cmd+enter",
-    "command": "renameFile",
-    "when": "explorerViewletVisible && filesExplorerFocus"
-  }, {
-    "key": "enter",
-    "command": "-renameFile",
-    "when": "explorerViewletVisible && filesExplorerFocus"
   },
-  {
-    "key": "enter",
-    "command": "list.select",
-    "when": "explorerViewletVisible && filesExplorerFocus"
-  },
+
 ]
