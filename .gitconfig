@@ -1,0 +1,46 @@
+[filter "lfs"]
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+[user]
+    name = Itai Noam
+    email = itai.noam@stratoscale.com
+[core]
+    editor = vim
+    pager = diff-so-fancy | less --tabs=4 -RFX
+    excludesfile = /Users/itai/.gitignore
+[alias]
+    lg = !git --no-pager log --pretty=format:'%h %<(20)%an %<(15)%cr %s' -20
+    a = add
+    b = !git branch -v --sort=-committerdate | head -n20
+    recent = !git for-each-ref --sort=-committerdate --format='%(refname:short)' refs/heads/ | head -n 100
+    c = commit
+    d = diff --ignore-space-change
+    f = fetch
+    o = checkout
+    co = checkout
+    cob = checkout -b
+    s = status 
+    w = whatchanged
+    aliases = "!git config -l | grep alias | cut -c 7-"
+    ca = commit --amend
+    save = "!git commit --no-verify -am 'wip' > /dev/null && if [ $(git log -1 --pretty=%B | grep -c wip) == 1  ]; then echo 'added wip commit' ;fi"
+    unsave = "!if [ $(git log -1 --pretty=%B | grep -c wip) == 1  ]; then git uncommit; echo 'removed wip commit' ;fi"
+    reset-to-origin = reset --hard @{upstream}
+    switch = !git checkout $(git branch --sort=-committerdate | fzf --height 40% --reverse)
+    switch-r = !git checkout --track $(git branch -r --sort=-committerdate | head -n20 | fzf --height 40% --reverse)
+    start = !"f() { git fetch && git checkout master && git rebase --autostash && git checkout -b "itai/$1" master; }; f"
+    fix-pr= !git commit -a --amend --no-edit && git push -f
+    uncommit = reset --soft HEAD~1
+    commits = "!HASH=`git --no-pager log --pretty=format:'%h %<(20)%an %<(15)%cr %s' | fzf --height 60% --tiebreak=index --reverse | awk 'END { if (NR==0)  exit 1; else print $1;}'` && git show -w ${HASH}"
+    commits-diverged= "!echo 'commits only in remote:\n' && git lg HEAD..@{u} && echo '\n\n commits only in local:\n' && git lg @{u}..HEAD"
+
+[push]
+    default = current
+[github]
+    user = itai-stratoscale
+[commit]
+    verbose = true
+[branch]
+    autosetuprebase = always
