@@ -42,6 +42,247 @@
                     }]
                 },
                 {
+                    "description": "hyper + numbers -> f1-12",
+                    "manipulators": [{
+                            "from": {
+                                "key_code": "1",
+                                "modifiers": {
+                                    "mandatory": [
+                                        "left_shift",
+                                        "left_control",
+                                        "left_option"
+                                    ],
+                                    "optional": [
+                                        "any"
+                                    ]
+                                }
+                            },
+                            "to": [{
+                                "key_code": "f1",
+                                "modifiers": []
+                            }],
+                            "type": "basic"
+                        },
+                        {
+                            "from": {
+                                "key_code": "2",
+                                "modifiers": {
+                                    "mandatory": [
+                                        "left_shift",
+                                        "left_control",
+                                        "left_option"
+                                    ],
+                                    "optional": [
+                                        "any"
+                                    ]
+                                }
+                            },
+                            "to": [{
+                                "key_code": "f2",
+                                "modifiers": []
+                            }],
+                            "type": "basic"
+                        },
+                        {
+                            "from": {
+                                "key_code": "3",
+                                "modifiers": {
+                                    "mandatory": [
+                                        "left_shift",
+                                        "left_control",
+                                        "left_option"
+                                    ],
+                                    "optional": [
+                                        "any"
+                                    ]
+                                }
+                            },
+                            "to": [{
+                                "key_code": "f3",
+                                "modifiers": []
+                            }],
+                            "type": "basic"
+                        },
+                        {
+                            "from": {
+                                "key_code": "4",
+                                "modifiers": {
+                                    "mandatory": [
+                                        "left_shift",
+                                        "left_control",
+                                        "left_option"
+                                    ],
+                                    "optional": [
+                                        "any"
+                                    ]
+                                }
+                            },
+                            "to": [{
+                                "key_code": "f4",
+                                "modifiers": []
+                            }],
+                            "type": "basic"
+                        },
+                        {
+                            "from": {
+                                "key_code": "5",
+                                "modifiers": {
+                                    "mandatory": [
+                                        "left_shift",
+                                        "left_control",
+                                        "left_option"
+                                    ],
+                                    "optional": [
+                                        "any"
+                                    ]
+                                }
+                            },
+                            "to": [{
+                                "key_code": "f5",
+                                "modifiers": []
+                            }],
+                            "type": "basic"
+                        },
+                        {
+                            "from": {
+                                "key_code": "6",
+                                "modifiers": {
+                                    "mandatory": [
+                                        "left_shift",
+                                        "left_control",
+                                        "left_option"
+                                    ],
+                                    "optional": [
+                                        "any"
+                                    ]
+                                }
+                            },
+                            "to": [{
+                                "key_code": "f6",
+                                "modifiers": []
+                            }],
+                            "type": "basic"
+                        }, {
+                            "from": {
+                                "key_code": "7",
+                                "modifiers": {
+                                    "mandatory": [
+                                        "left_shift",
+                                        "left_control",
+                                        "left_option"
+                                    ],
+                                    "optional": [
+                                        "any"
+                                    ]
+                                }
+                            },
+                            "to": [{
+                                "key_code": "f7",
+                                "modifiers": []
+                            }],
+                            "type": "basic"
+                        }, {
+                            "from": {
+                                "key_code": "8",
+                                "modifiers": {
+                                    "mandatory": [
+                                        "left_shift",
+                                        "left_control",
+                                        "left_option"
+                                    ],
+                                    "optional": [
+                                        "any"
+                                    ]
+                                }
+                            },
+                            "to": [{
+                                "key_code": "f8",
+                                "modifiers": []
+                            }],
+                            "type": "basic"
+                        }, {
+                            "from": {
+                                "key_code": "9",
+                                "modifiers": {
+                                    "mandatory": [
+                                        "left_shift",
+                                        "left_control",
+                                        "left_option"
+                                    ],
+                                    "optional": [
+                                        "any"
+                                    ]
+                                }
+                            },
+                            "to": [{
+                                "key_code": "f9",
+                                "modifiers": []
+                            }],
+                            "type": "basic"
+                        }, {
+                            "from": {
+                                "key_code": "0",
+                                "modifiers": {
+                                    "mandatory": [
+                                        "left_shift",
+                                        "left_control",
+                                        "left_option"
+                                    ],
+                                    "optional": [
+                                        "any"
+                                    ]
+                                }
+                            },
+                            "to": [{
+                                "key_code": "f10",
+                                "modifiers": []
+                            }],
+                            "type": "basic"
+                        },
+                        {
+                            "from": {
+                                "key_code": "hyphen",
+                                "modifiers": {
+                                    "mandatory": [
+                                        "left_shift",
+                                        "left_control",
+                                        "left_option"
+                                    ],
+                                    "optional": [
+                                        "any"
+                                    ]
+                                }
+                            },
+                            "to": [{
+                                "key_code": "f11",
+                                "modifiers": []
+                            }],
+                            "type": "basic"
+                        },
+                        {
+                            "from": {
+                                "key_code": "equal_sign",
+                                "modifiers": {
+                                    "mandatory": [
+                                        "left_shift",
+                                        "left_control",
+                                        "left_option"
+                                    ],
+                                    "optional": [
+                                        "any"
+                                    ]
+                                }
+                            },
+                            "to": [{
+                                "key_code": "f12",
+                                "modifiers": []
+                            }],
+                            "type": "basic"
+                        }
+
+                    ]
+                },
+                {
                     "manipulators": [{
                             "description": "hyper + hjkk -> arrows",
                             "from": {
@@ -277,7 +518,7 @@
                                 }
                             },
                             "to": [{
-                                "key_code": "fastforward"
+                                "key_code": "volume_decrement"
                             }],
                             "type": "basic"
                         },
@@ -317,10 +558,18 @@
             "manipulate_caps_lock_led": false,
             "simple_modifications": [{
                     "from": {
-                        "key_code": "left_option"
+                        "key_code": "escape"
                     },
                     "to": {
-                        "key_code": "left_command"
+                        "key_code": "grave_accent_and_tilde"
+                    }
+                },
+                {
+                    "from": {
+                        "key_code": "grave_accent_and_tilde"
+                    },
+                    "to": {
+                        "key_code": "escape"
                     }
                 },
                 {
@@ -329,6 +578,14 @@
                     },
                     "to": {
                         "key_code": "left_option"
+                    }
+                },
+                {
+                    "from": {
+                        "key_code": "left_option"
+                    },
+                    "to": {
+                        "key_code": "left_command"
                     }
                 }
             ]
@@ -435,6 +692,7 @@
         "simple_modifications": [],
         "virtual_hid_keyboard": {
             "caps_lock_delay_milliseconds": 0,
+            "country_code": 0,
             "keyboard_type": "ansi"
         }
     }]

@@ -12,7 +12,6 @@
   "code-runner.saveAllFilesBeforeRun": true,
   "code-runner.showRunIconInEditorTitleMenu": false,
   "editor.formatOnPaste": true,
-  "editor.formatOnSave": true,
   "editor.minimap.enabled": false,
   "editor.multiCursorModifier": "ctrlCmd",
   "editor.renderIndentGuides": false,
@@ -35,10 +34,7 @@
     "suppressResultsExplorerNotice": true,
     "suppressShowKeyBindingsNotice": true
   },
-  "gitlens.codeLens.enabled": false,
-  "gitlens.currentLine.enabled": false,
   "gitlens.gitExplorer.branches.layout": "list",
-  "gitlens.gitExplorer.enabled": true,
   "gitlens.gitExplorer.view": "history",
   "gitlens.hovers.currentLine.over": "line",
   "gitlens.hovers.enabled": false,
@@ -74,5 +70,13 @@
   "sync.syncExtensions": true,
   "zenMode.fullScreen": false,
   "workbench.startupEditor": "newUntitledFile",
-  "window.zoomLevel": 0
+  "window.zoomLevel": 0,
+  "editor.minimap.maxColumn": 145,
+  "gitlens.settings.mode": "advanced",
+  "gitlens.resultsExplorer.location": "scm",
+  "gitlens.codeLens.enabled": false,
+  "gitlens.currentLine.enabled": false,
+  "gitlens.mode.statusBar.enabled": false,
+  "breadcrumbs.enabled": true,
+  "editor.fontSize": 13
 }

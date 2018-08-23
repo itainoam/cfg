@@ -17,17 +17,19 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'do': 'bash install.sh',
     \ }
 call plug#end()
-
-"LSP config
-augroup filetype_js
-    autocmd!
-    autocmd BufReadPost *.js setlocal filetype=javascript
-augroup END
-let g:LanguageClient_autoStart = 1
-let g:LanguageClient_serverCommands = {
+"LSP config augroup filetype_js autocmd!  autocmd BufReadPost *.js setlocal filetype=javascript augroup END let g:LanguageClient_autoStart = 1 let g:LanguageClient_serverCommands = {
     \ 'javascript': ['javascript-typescript-stdio'],
     \ }
 
+"   :Ag  - Start fzf with hidden preview window that can be enabled with "?" key
+"   :Ag! - Start fzf in fullscreen and display the preview window above
+ command! -bang -nargs=* Ag
+   \ call fzf#vim#ag(<q-args>,
+   \                 <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'},'up:60%')
+   \                         : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'},'right:50%:hidden', '?'),
+   \                 <bang>0)
+ 
+autocmd! User FzfStatusLine call <SID>fzf_statusline()
 " for setting the correct root folder for mui
 let g:LanguageClient_rootMarkers = {
           \ 'javascript': ['*/js'],
@@ -38,6 +40,11 @@ nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 let mapleader = ' ' " map leader to space
 nnoremap <leader>r :History<cr>
 nnoremap <leader>o :Files<cr>
+nnoremap <leader>f :Ag!<cr>
+
+" update is like save but only runs when file has change so doesn't change
+" date
+nnoremap <leader><leader>s :update<cr>
 
 "scrolling 
 nmap <C-j> 3j3<C-e>
