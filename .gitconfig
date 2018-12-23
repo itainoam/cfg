@@ -1,7 +1,7 @@
 [filter "lfs"]
     clean = git-lfs clean -- %f
-    smudge = git-lfs smudge -- %f
-    process = git-lfs filter-process
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
     required = true
 [user]
     name = Itai Noam
@@ -25,8 +25,8 @@
     w = whatchanged
     aliases = "!git config -l | grep alias | cut -c 7-"
     ca = commit --amend
-    save = "!git commit --no-verify -am 'wip' > /dev/null && if [ $(git log -1 --pretty=%B | grep -c wip) == 1  ]; then echo 'added wip commit' ;fi"
-    unsave = "!if [ $(git log -1 --pretty=%B | grep -c wip) == 1  ]; then git uncommit; echo 'removed wip commit' ;fi"
+    wip = "!git commit --no-verify -am 'wip' > /dev/null && if [ $(git log -1 --pretty=%B | grep -c wip) == 1  ]; then echo 'added wip commit' ;fi"
+    unwip = "!if [ $(git log -1 --pretty=%B | grep -c wip) == 1  ]; then git uncommit; echo 'removed wip commit' ;fi"
     reset-to-origin = reset --hard @{upstream}
     switch = !git checkout $(git branch --sort=-committerdate | fzf --height 40% --reverse)
     switch-r = !git checkout --track $(git branch -r --sort=-committerdate | head -n20 | fzf --height 40% --reverse)
@@ -42,5 +42,3 @@
     user = itai-stratoscale
 [commit]
     verbose = true
-[branch]
-    autosetuprebase = always
