@@ -1,7 +1,9 @@
 (setq mac-command-modifier 'super)
 (setq mac-option-modifier 'meta)
 (setq auto-save-visited-mode t)
-(set-frame-font "Source Code Pro 14" nil t)
+
+(setq doom-font (font-spec :family "Source Code Pro" :size 14))
+(add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
 
 (setq org-startup-indented t
           org-bullets-bullet-list '("› ")
@@ -17,7 +19,7 @@
 cause org was not loaded.
 with-eval-after-load can be replaced with After!. Which is a macro -> that's why I couldn't find it with spc h f "
 
-  (with-eval-after-load 'org
+  (after! 'org
     (setq org-startup-indented t
           org-bullets-bullet-list '("› ")
           org-ellipsis "  ⌄  "
@@ -42,7 +44,6 @@ with-eval-after-load can be replaced with After!. Which is a macro -> that's why
           (lambda ()
             (set-window-margins nil 3) ;;requires setting org-mode to apply everytime
             (hl-line-mode -1)
-            (setq org-pretty-entities t)
             (setq smartparens-mode nil)
             (setq indicate-empty-lines nil)
             (setq line-spacing 0.5)))
