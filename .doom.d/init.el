@@ -17,18 +17,18 @@
        :completion
        (company)          ; the ultimate code completion backend
         ;+auto)           ; as-you-type code completion
-       (helm             ; the *other* search engine for love and life
-        +fuzzy)          ; enable fuzzy search backend for helm
+      ; (helm             ; the *other* search engine for love and life
+      ;  +fuzzy)          ; enable fuzzy search backend for helm
       ;ido               ; the other *other* search engine...
-      ;(ivy              ; a search engine for love and life
-      ; +fuzzy)          ; enable fuzzy search backend for ivy
+      (ivy              ; a search engine for love and life
+       +fuzzy)           ; enable fuzzy search backend for ivy
 
        :ui
       ;deft              ; notational velocity for Emacs
        doom              ; what makes DOOM look the way it does
        ;doom-dashboard    ; a nifty splash screen for Emacs
        doom-modeline     ; a snazzy Atom-inspired mode-line
-       doom-quit         ; DOOM quit-message prompts when you quit Emacs
+       ;doom-quit         ; DOOM quit-message prompts when you quit Emacs
        evil-goggles      ; display visual hints when editing in evil
       ;fci               ; a `fill-column' indicator
        hl-todo           ; highlight TODO/FIXME/NOTE tags
@@ -125,7 +125,7 @@
        (sh +fish)        ; she sells (ba|z|fi)sh shells on the C xor
       ;solidity          ; do you need a blockchain? No.
       ;swift             ; who asked for emoji variables?
-      ;web               ; the tubes
+      web               ; the tubes
 
        ;; Applications are complex and opinionated modules that transform Emacs
        ;; toward a specific purpose. They may have additional dependencies and

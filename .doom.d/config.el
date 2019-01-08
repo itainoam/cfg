@@ -1,6 +1,6 @@
 ;; it seems that mac keyboard was fixed in the latest version of doom. can be deleted.
-;;(setq mac-command-modifier 'super)
-;;(setq mac-option-modifier 'meta)
+(setq mac-command-modifier 'meta)
+(setq mac-option-modifier 'super)
 (setq auto-save-visited-mode t)
 
 (setq doom-font (font-spec :family "Source Code Pro" :size 14))
@@ -33,7 +33,7 @@ with-eval-after-load can be replaced with After!. Which is a macro -> that's why
 
 ;; sets so documentation pops on the right side
 (set-popup-rule! "^\\*info\\*$" :width 80 :side 'right)
-(set-popup-rule! "^\\*[Hh]elp" :width 100 :side 'right :slot 3)
+(set-popup-rule! "^\\*[Hh]elp" :size 0.35)
 (set-popup-rule! "^\\*Man " :width 80 :side 'right)
 (set-popup-rule! "^\\*Customize" :width 80 :side 'right)
 
@@ -47,8 +47,9 @@ with-eval-after-load can be replaced with After!. Which is a macro -> that's why
 (add-hook 'text-mode-hook 'turn-on-visual-line-mode)
 (add-hook 'org-mode-hook
           (lambda ()
+            (set-window-margins (selected-window) 3)
             (set-window-margins nil 3) ;;requires setting org-mode to apply everytime
             (hl-line-mode -1)
             (smartparens-mode -1) ;; nil toggles and -1 disables
             (setq indicate-empty-lines nil)
-            (setq line-spacing 0.5)))
+            (setq line-spacing 0.3)))
