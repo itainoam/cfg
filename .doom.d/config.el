@@ -22,8 +22,17 @@ with-eval-after-load can be replaced with After!. Which is a macro -> that's why
 
 (itai/org-setup)
 
-(setq deft-directory "~/Dropbox/notes")
+     (setq org-capture-templates
+           '(("t" "Todo" entry (file+headline "~/org/gtd.org" "Tasks")
+              "* TODO %?\n  %i\n  %a")
+             ("j" "Journal" entry (file+datetree "~/org/journal.org")
+              "* %?\nEntered on %U\n  %i\n  %a")))
 
+
+(setq deft-directory "~/Dropbox/notes")
+(setq org-directory "~/Dropbox/org")
+; to allow coping/moving files to next window split
+(setq dired-dwim-target t)
 
 ; TODO create a function to toggle between gutter marks for working (default) to staged
 ;; (custom-set-variables
