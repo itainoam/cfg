@@ -39,6 +39,6 @@
 [push]
     default = current
 [github]
-    user = itai-stratoscale
+    user = itainoam
 [commit]
     verbose = true

@@ -22,8 +22,18 @@ with-eval-after-load can be replaced with After!. Which is a macro -> that's why
 
 (itai/org-setup)
 
+(setq deft-directory "~/Dropbox/notes")
 
 
+; TODO create a function to toggle between gutter marks for working (default) to staged
+;; (custom-set-variables
+;;  '(git-gutter:diff-option "--staged"))
+
+
+;; auto save org files
+(add-hook 'auto-save-hook 'org-save-all-org-buffers)
+
+; fix the weird info keyboard mapping
 (map! :map Info-mode-map
       :n "l" #'evil-forward-char
       :n "h" #'evil-backward-char
