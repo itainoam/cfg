@@ -22,15 +22,14 @@ with-eval-after-load can be replaced with After!. Which is a macro -> that's why
 
 (itai/org-setup)
 
-     (setq org-capture-templates
-           '(("t" "Todo" entry (file+headline "~/org/gtd.org" "Tasks")
-              "* TODO %?\n  %i\n  %a")
-             ("j" "Journal" entry (file+datetree "~/org/journal.org")
-              "* %?\nEntered on %U\n  %i\n  %a")))
-
+;; if I want to add to doom template I have to use (add-to-list 'org-capture-templates ....
+(setq org-capture-templates
+      '(("t" "MUI Task" entry (file+headline "~/org/mui.org" "Current")
+         "** %?\n ")))
 
 (setq deft-directory "~/Dropbox/notes")
 (setq org-directory "~/Dropbox/org")
+
 ; to allow coping/moving files to next window split
 (setq dired-dwim-target t)
 
