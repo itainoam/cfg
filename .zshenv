@@ -29,6 +29,7 @@ alias ui-proxy="python /Users/itai/dev/mui/tools/ui-proxy"
 alias sharbot='slack-cli -d sharbot "allocate" && sleep 5 && slack-cli -d sharbot "super extend" && slack-cli -l 3 -s sharbot | grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b" | cut -f 1 | xargs sudo python /Users/itai/dev/mui/tools/ui-proxy'
 
 sharbot1() {
+  slack-cli -d sharbot "allocate";
   sleep 5 && slack-cli -d sharbot "super extend";
   slack-cli -l 3 -s sharbot | grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b" | cut -f 1 | xargs sudo python /Users/itai/dev/mui/tools/ui-proxy
 }

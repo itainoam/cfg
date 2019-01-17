@@ -1,6 +1,6 @@
 {
   "[plaintext]": {
-    "editor.quickSuggestions": false
+    "editor.quickSuggestions": true
   },
   "code-runner.customCommand": "awk -f prog emp.data",
   "code-runner.executorMap": {
@@ -11,7 +11,7 @@
   },
   "code-runner.saveAllFilesBeforeRun": true,
   "code-runner.showRunIconInEditorTitleMenu": false,
-  "editor.formatOnPaste": true,
+  "editor.formatOnPaste": false,
   "editor.minimap.enabled": false,
   "editor.multiCursorModifier": "ctrlCmd",
   "editor.renderIndentGuides": false,
@@ -21,7 +21,6 @@
   "editor.wordWrap": "off",
   "explorer.confirmDelete": false,
   "extensions.autoUpdate": true,
-  "files.autoSave": "afterDelay",
   "git.enableSmartCommit": true,
   "git.path": "/usr/bin/git",
   "gitlens.advanced.messages": {
@@ -38,9 +37,11 @@
   "gitlens.gitExplorer.view": "history",
   "gitlens.hovers.currentLine.over": "line",
   "gitlens.hovers.enabled": false,
-  "prettier.printWidth": 80,
+  "prettier.printWidth": 120,
   "prettier.semi": false,
   "prettier.singleQuote": true,
+  "prettier.trailingComma": "es5",
+  "prettier.jsxBracketSameLine": true,
   "python.linting.lintOnSave": false,
   "rest-client.previewResponseInUntitledDocument": false,
   "sync.askGistName": false,
@@ -78,5 +79,22 @@
   "gitlens.currentLine.enabled": false,
   "gitlens.mode.statusBar.enabled": false,
   "breadcrumbs.enabled": true,
-  "editor.fontSize": 13
+  "editor.fontSize": 13,
+  "search.location": "sidebar",
+  "github.hosts": [
+    {
+      "host": "https://github.com",
+      "username": "oauth",
+      "token": "system"
+    }
+  ],
+  "editor.autoClosingBrackets": "never",
+  "terraform.codelens.enabled": false,
+  "editor.scrollBeyondLastLine": false,
+  "files.autoSave": "afterDelay",
+  "gitlens.views.repositories.branches.layout": "list",
+  "gitlens.views.fileHistory.location": "scm",
+  "gitlens.views.lineHistory.location": "scm",
+  "gitlens.views.compare.location": "scm",
+  "gitlens.views.search.location": "scm"
 }
