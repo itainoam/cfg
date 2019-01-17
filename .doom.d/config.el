@@ -37,6 +37,8 @@ with-eval-after-load can be replaced with After!. Which is a macro -> that's why
 ;; (custom-set-variables
 ;;  '(git-gutter:diff-option "--staged"))
 
+;; change order magit sort branches
+(setq magit-list-refs-sortby "-creatordate")
 
 ;; auto save org files
 (add-hook 'auto-save-hook 'org-save-all-org-buffers)
