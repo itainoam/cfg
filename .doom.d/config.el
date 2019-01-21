@@ -3,7 +3,7 @@
 (setq mac-option-modifier 'super)
 (setq auto-save-visited-mode t)
 
-(setq doom-font (font-spec :family "Source Code Pro" :size 14))
+ (setq doom-font (font-spec :family "Source Code Pro" :size 14))
 (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
 
 
@@ -24,11 +24,11 @@ with-eval-after-load can be replaced with After!. Which is a macro -> that's why
 
 ;; if I want to add to doom template I have to use (add-to-list 'org-capture-templates ....
 (setq org-capture-templates
-      '(("t" "MUI Task" entry (file+headline "~/org/mui.org" "Current")
+      '(("t" "MUI Task" entry (file+headline "~/Dropbox/org/mui.org" "Current")
          "** %?\n ")))
 
-(setq deft-directory "~/Dropbox/notes")
-(setq org-directory "~/Dropbox/org")
+(setq deft-directory "~/Dropbox/notes/")
+(setq org-directory "~/Dropbox/org/")
 
 ; to allow coping/moving files to next window split
 (setq dired-dwim-target t)
