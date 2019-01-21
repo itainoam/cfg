@@ -39,6 +39,8 @@ with-eval-after-load can be replaced with After!. Which is a macro -> that's why
 
 ;; change order magit sort branches
 (setq magit-list-refs-sortby "-creatordate")
+;; turns on wip mode to auto save working tree to git
+(setq magit-wip-mode t)
 
 ;; auto save org files
 (add-hook 'auto-save-hook 'org-save-all-org-buffers)
