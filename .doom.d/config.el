@@ -41,6 +41,9 @@ with-eval-after-load can be replaced with After!. Which is a macro -> that's why
 (setq magit-list-refs-sortby "-creatordate")
 ;; turns on wip mode to auto save working tree to git
 (setq magit-wip-mode t)
+;; disable escape to quit - happens too many time on accident
+(map! :map magit-status-mode-map :n "escape" nil)
+
 
 ;; auto save org files
 (add-hook 'auto-save-hook 'org-save-all-org-buffers)
