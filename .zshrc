@@ -38,6 +38,7 @@ HISTSIZE=10000
 HISTFILESIZE=10000
 SAVEHIST=10000
 setopt APPEND_HISTORY
+setopt SHARE_HISTORY
 
 # Adds Powerline
 function powerline_precmd() {
