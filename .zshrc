@@ -21,6 +21,9 @@ antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-completions
 antigen bundle zsh-users/zsh-history-substring-search
 
+# git fzf plugin
+antigen bundle 'wfxr/forgit'
+#
 # Tell Antigen that you're done.
 antigen apply
 
@@ -70,3 +73,5 @@ export NVM_DIR="/Users/itai/.nvm"
 
 # FZF config
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
