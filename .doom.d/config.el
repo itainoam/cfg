@@ -1,6 +1,3 @@
-;; it seems that mac keyboard was fixed in the latest version of doom. can be deleted.
-(setq mac-command-modifier 'meta)
-(setq mac-option-modifier 'super)
 (setq auto-save-visited-mode t)
 
  (setq doom-font (font-spec :family "Source Code Pro" :size 14))
@@ -65,6 +62,7 @@ with-eval-after-load can be replaced with After!. Which is a macro -> that's why
 (load-theme 'doom-one-light t)
 (custom-set-faces
  ;; should be replace with defface or face-remap-add-relative
+ '(org-code ((t (:background "white" :foreground "gray46" :family "Fira Mono"))))
  '(org-level-1 ((t (:foreground "#444444" :weight normal :height 1.6))))
  '(org-level-2 ((t (:foreground "#444444" :weight normal :height 1.4))))
  '(org-level-3 ((t (:foreground "#444444" :weight normal :height 1.1)))))

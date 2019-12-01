@@ -1,3 +1,5 @@
+let mapleader = ' ' " map leader to space
+
 if empty(glob('~/.vim/autoload/plug.vim'))
   wombatwombatsilent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -10,54 +12,163 @@ Plug 'flazz/vim-colorschemes'
 Plug 'metakirby5/codi.vim'
 Plug 'machakann/vim-highlightedyank'
 Plug 'tpope/vim-vinegar'
-Plug 'w0rp/ale'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
 Plug '/usr/local/opt/fzf'
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
+Plug 'sheerun/vim-polyglot'
 Plug 'junegunn/fzf.vim'
 Plug 'mattn/emmet-vim'
-Plug 'airblade/vim-gitgutter'
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-endif
+" Plug 'airblade/vim-gitgutter'
+
+Plug 'rakr/vim-one' " or other package manager
+
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc.nvim', {'tag': '*', 'do': 'yarn install'}
+
+" Plug 'w0rp/ale'
+" Plug 'autozimu/LanguageClient-neovim', {
+"    \ 'branch': 'next',
+"    \ 'do': 'bash install.sh',
+"    \ }
+"if has('nvim')
+"  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"endif
 call plug#end()
 
-" deoplete only complete on tab
-let g:deoplete#disable_auto_complete = 1
+
+
+""""color theme"""""""""
+
+" for getting colors to work source: https://github.com/rakr/vim-one
+
+"Credit joshdick
+"Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
+if (has("nvim"))
+"For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+endif
+"For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+"Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+" < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+if (has("termguicolors"))
+  set termguicolors
+endif
+
+
+set background=dark " for the dark version
+" set background=light " for the light version
+colorscheme one
+
+" prev color scheme
+"colorscheme seoul256
+"let g:seoul256_background = 233
+
+"""""""""""""""""""
+""" coc
+
+" Better display for messages
+set cmdheight=2
+
+" Smaller updatetime for CursorHold & CursorHoldI
+set updatetime=300
+
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
+
+" always show signcolumns
+set signcolumn=yes
+"
+" Show title of window as file name
+set title
+
+""""
+"status line. stolen from https://github.com/junegunn/dotfiles/blob/master/vimrc
+function! s:statusline_expr()
+  let mod = "%{&modified ? '[+] ' : !&modifiable ? '[x] ' : ''}"
+  let ro  = "%{&readonly ? '[RO] ' : ''}"
+  let ft  = "%{len(&filetype) ? '['.&filetype.'] ' : ''}"
+  let fug = "%{exists('g:loaded_fugitive') ? fugitive#statusline() : ''}"
+  let sep = ' %= '
+  let pos = ' %-12(%l : %c%V%) '
+  let pct = ' %P'
+
+  return '[%n] %F %<'.mod.ro.ft.fug.sep.pos.'%*'.pct
+endfunction
+let &statusline = s:statusline_expr()
+"""
+
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 inoremap <silent><expr> <TAB>
-    \ pumvisible() ? "\<C-n>" :
-    \ <SID>check_back_space() ? "\<TAB>" :
-    \ deoplete#mappings#manual_complete()
-function! s:check_back_space() abort "{{{
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~ '\s'
-endfunction"}}}
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-let g:deoplete#enable_at_startup = 1
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
-" cursor line only on current window and only in normal mode
+" Use <c-space> for trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> for confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Use `[c` and `]c` for navigate diagnostics
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <leader>h <Plug>(coc-diagnostic-info)
+  
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+" sets up prettier
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+vmap <leader>cf  <Plug>(coc-format-selected)
+map <leader>cf <Plug>(coc-format)
+
+"hide search highlight
+nnoremap <leader><esc> :noh<cr>
+
+" Create mappings for function text object, requires document symbols feature of languageserver.
+xmap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap if <Plug>(coc-funcobj-i)
+omap af <Plug>(coc-funcobj-a)
+
+" Search workspace symbols
+nnoremap <silent> <space>cd  :<C-u>CocList -I symbols<cr>
+
+" use `:OR` for organize import of current buffer
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
+""""""""""""""'
+
 autocmd InsertLeave,WinEnter * set cursorline
 autocmd InsertEnter,WinLeave * set nocursorline
 
-"LSP config
-augroup filetype_js
-    autocmd!
-    autocmd BufReadPost *.js setlocal filetype=javascript
-augroup END
-let g:LanguageClient_autoStart = 1
-let g:LanguageClient_serverCommands = {
-    \ 'javascript': ['javascript-typescript-stdio'],
-    \ }
-" for setting the correct root folder for mui
-let g:LanguageClient_rootMarkers = {
-          \ 'javascript': ['*/js'],
-          \ }     
-" replace go-to-definition to use lsp
-nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 
 
 "   :Ag  - Start fzf with hidden preview window that can be enabled with "?" key
@@ -67,28 +178,24 @@ nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
    \                 <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'},'up:60%')
    \                         : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'},'right:50%:hidden', '?'),
    \                 <bang>0)
- 
-" for setting the correct root folder for mui
-let g:LanguageClient_rootMarkers = {
-          \ 'javascript': ['*/js'],
-          \ }     
-" replace go-to-definition to use lsp
-nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 
-let mapleader = ' ' " map leader to space
-nnoremap <leader>r :History<cr>
-nnoremap <leader>o :Files<cr>
-nnoremap <leader>f :Ag!<cr>
+
+
+nnoremap <leader>fr :History<cr>
+nnoremap <leader><leader> :GFiles<cr>
+nnoremap <leader>// :Ag!<cr>
+nnoremap <leader>gs :GFiles?<cr>
+nnoremap <leader>wv :vsplit<cr>
+nnoremap <leader>wq :close<cr>
+nnoremap <leader>wq :close<cr>
 
 " update is like save but only runs when file has change so doesn't change
-nnoremap <leader><leader>s :update<cr>
+nnoremap <leader>s :update<cr>
 
 "scrolling 
 nmap <C-j> 3j3<C-e>
 nmap <C-k> 3k3<C-y>
 
-" Auto reload changed files  
-set autoread
 
 " reduce update time for faster gitgutter update
 set updatetime=200
@@ -102,8 +209,6 @@ nnoremap <silent> ]B :blast<CR>
 
 let g:highlightedyank_highlight_duration = 200
 
-colorscheme seoul256
-let g:seoul256_background = 233
 
 " Customize fzf colors to match your color scheme
 
@@ -121,25 +226,8 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
-command! -bang -nargs=* Ag
-  \ call fzf#vim#ag(<q-args>,
-  \                 <bang>0 ? fzf#vim#with_preview('up:60%')
-  \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \                 <bang>0)
-
-" use ag
-let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 
 
-
-" ale config
-let g:ale_sign_error = '•'
-let g:ale_sign_warning = '•'
-let g:ale_linters = {
-\   'javascript': ['eslint'],
-\}
-set signcolumn="yes"
-let g:ale_sign_column_always = 1
 
 " always keep gutter open
 autocmd BufRead,BufNewFile * setlocal signcolumn=yes
@@ -164,6 +252,7 @@ set display     =lastline  " Show as much as possible of the last line.
 set cursorline             " Highlight cursor line
 set showmode               " Show current mode in command-line.
 set showcmd                " Show already typed keys when more are expected.
+set ignorecase              " All searches will be case insensative
 set smartcase              " Ignore case in searching unless uppercase letters are used
 set ttyfast                " Faster redrawing.
 set lazyredraw             " Only redraw when necessary.
@@ -172,6 +261,11 @@ set lazyredraw             " Only redraw when necessary.
 set undofile
 set undodir=~/.vim/undodir
 
+" swap files
+set directory   =~/.vim/swap
+set updatecount =100
+set shortmess=A "disables annoying swap warnings
+
 " shows insert cursor in iTerm2
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_SR = "\<Esc>]50;CursorShape=2\x7"
@@ -179,3 +273,11 @@ let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
 " Maintain undo history between sessions
 set clipboard=unnamed
+
+" Auto reload changed files 
+" (source https://unix.stackexchange.com/a/383044 )
+
+autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif
+" Notification after file change
+autocmd FileChangedShellPost *
+  \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
