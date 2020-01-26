@@ -23,11 +23,11 @@ alias gco='git co'
 alias gadd='git add'
 alias gitp='git push --dry-run --no-verify && git push'
 alias gre='git reset'
-alias config='/usr/local/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-alias cj="jira view $(git branch | sed -n '/\* /s///p' | grep -oiE 'ui-[0-9]{4}')"
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+
+# alias cj="jira view $(git branch | sed -n '/\* /s///p' | grep -oiE 'ui-[0-9]{4}')"
 alias laptop-mount="sudo sshfs -o allow_other,defer_permissions,IdentityFile=/Users/itai/.ssh/id_rsa itai@10.0.17.71:/home/itai/dev /Users/itai/laptop"
 alias laptop-ssh="ssh itai@10.0.17.71"
-alias ui-proxy="python /Users/itai/dev/mui/tools/ui-proxy"
 alias sharbot='slack-cli -d sharbot "allocate" && sleep 5 && slack-cli -d sharbot "super extend" && slack-cli -l 3 -s sharbot | grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b" | cut -f 1 | xargs sudo python /Users/itai/dev/mui/tools/ui-proxy'
 alias mui-sync="while sleep 2; do ls ~/dev/mui/js/client/dist | entr -d npm run deploy ui-proxy; done"
 alias magit="emacs --no-window-system --eval '(progn (magit-status) (delete-other-windows))'"

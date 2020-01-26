@@ -1,7 +1,7 @@
 let mapleader = ' ' " map leader to space
 
 if empty(glob('~/.vim/autoload/plug.vim'))
-  wombatwombatsilent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
@@ -19,25 +19,28 @@ Plug '/usr/local/opt/fzf'
 Plug 'sheerun/vim-polyglot'
 Plug 'junegunn/fzf.vim'
 Plug 'mattn/emmet-vim'
-" Plug 'airblade/vim-gitgutter'
+Plug 'airblade/vim-rooter'
+" Plug 'vimwiki/vimwiki'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+Plug 'lambdalisue/suda.vim' " for editing with sudo in nvim
 
 Plug 'rakr/vim-one' " or other package manager
-
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-" Plug 'neoclide/coc.nvim', {'tag': '*', 'do': 'yarn install'}
 
-" Plug 'w0rp/ale'
-" Plug 'autozimu/LanguageClient-neovim', {
-"    \ 'branch': 'next',
-"    \ 'do': 'bash install.sh',
-"    \ }
-"if has('nvim')
-"  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-"endif
 call plug#end()
 
+" markdown
+let g:vim_markdown_folding_style_pythonic = 1
 
-
+" vim wiki 
+" let g:vimwiki_map_prefix = '<Leader>e'
+" let wiki = {}
+" let wiki.path ='~/dropbox/notes/'
+" let wiki.syntax ='markdown'
+" let wiki.ext ='.md'
+" let g:vimwiki_list = [wiki]
+" let g:vimwiki_folding='expr'
 """"color theme"""""""""
 
 " for getting colors to work source: https://github.com/rakr/vim-one
@@ -183,14 +186,15 @@ autocmd InsertEnter,WinLeave * set nocursorline
 
 nnoremap <leader>fr :History<cr>
 nnoremap <leader><leader> :GFiles<cr>
-nnoremap <leader>// :Ag!<cr>
 nnoremap <leader>gs :GFiles?<cr>
 nnoremap <leader>wv :vsplit<cr>
-nnoremap <leader>wq :close<cr>
-nnoremap <leader>wq :close<cr>
+nnoremap <leader>qq :close<cr>
 
 " update is like save but only runs when file has change so doesn't change
 nnoremap <leader>s :update<cr>
+
+" 
+nnoremap <leader>fd :Ex<cr>
 
 "scrolling 
 nmap <C-j> 3j3<C-e>
@@ -206,9 +210,14 @@ nnoremap <leader>] :bnext<CR>
 nnoremap <silent> [B :bfirst<CR>
 nnoremap <silent> ]B :blast<CR>
 
+" Window management
+nnoremap <leader>ws  :split<CR>
+nnoremap <leader>wv :vsplit<CR>
+nnoremap <leader>wq :quit<CR>
+nnoremap <leader>ww <c-w><c-w>
 
+nnoremap <space> za
 let g:highlightedyank_highlight_duration = 200
-
 
 " Customize fzf colors to match your color scheme
 
@@ -236,7 +245,6 @@ syntax enable
 set number
 set wildmenu
 set wildmode=longest:full,full
-
 set timeoutlen=1000 ttimeoutlen=0 "elimentates delay when getting in and out of cmd
 set incsearch              " Highlight Search
 set autoindent             " Indent according to previous line.
@@ -257,6 +265,13 @@ set smartcase              " Ignore case in searching unless uppercase letters a
 set ttyfast                " Faster redrawing.
 set lazyredraw             " Only redraw when necessary.
 
+filetype plugin indent on  " for vimwiki
+set foldenable          " enable folding
+set foldlevelstart=10   " open most folds by default
+set foldnestmax=10      " 10 nested fold max
+set foldmethod=indent
+
+
 " Maintain undo history between sessions
 set undofile
 set undodir=~/.vim/undodir
@@ -265,7 +280,7 @@ set undodir=~/.vim/undodir
 set directory   =~/.vim/swap
 set updatecount =100
 set shortmess=A "disables annoying swap warnings
-
+set inccommand=nosplit "live substituion in nvim
 " shows insert cursor in iTerm2
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_SR = "\<Esc>]50;CursorShape=2\x7"
@@ -276,8 +291,32 @@ set clipboard=unnamed
 
 " Auto reload changed files 
 " (source https://unix.stackexchange.com/a/383044 )
-
 autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif
 " Notification after file change
 autocmd FileChangedShellPost *
   \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
+
+" The Silver Searcher
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
+
+" Silver searcher - Ag
+if executable('ag')
+  let &grepprg = 'ag --nogroup --nocolor --column'
+else
+  let &grepprg = 'grep -rn $* *'
+endif
+command! -nargs=1 -bar Grep execute 'silent! grep! <q-args>' | redraw! | copen
+
+nnoremap <leader>// :Grep 
+
+" write with sudo
+command! Sudow :execute 'w suda://%' 

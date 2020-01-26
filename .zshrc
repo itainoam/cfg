@@ -45,7 +45,7 @@ setopt SHARE_HISTORY
 
 # Adds Powerline
 function powerline_precmd() {
-    PS1="$(~/bin/powerline-go -modules venv,ssh,cwd,perms,git,jobs,exit,root -error $? -shell zsh)"
+    PS1="$(~/bin/powerline-go -modules venv,ssh,cwd,perms,jobs,exit,root -error $? -shell zsh)"
 }
 
 function install_powerline_precmd() {
@@ -75,3 +75,11 @@ export NVM_DIR="/Users/itai/.nvm"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+# default to starting a new shell in tmux 
+if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+  tmux attach || tmux new
+
+fi
+
+source /Users/itai/Library/Preferences/org.dystroy.broot/launcher/bash/br
